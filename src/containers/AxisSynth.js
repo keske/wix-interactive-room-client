@@ -2,14 +2,19 @@
 
 import * as React from 'react';
 
-type Props = {};
+// Components
+import Gyroscope from '../components/Gyroscope';
 
-export default class AxisSynth extends React.Component<Props> {
-  render(): React.Node {
-    return (
-      <div>
-        Init
-      </div>
-    );
-  }
-}
+export default (): React.Node => (
+  <Gyroscope>
+    {
+      ({ acceleration }) => (
+        <div>
+          {
+            JSON.stringify(acceleration)
+          }
+        </div>
+      )
+    }
+  </Gyroscope>
+);

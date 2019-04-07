@@ -19,6 +19,7 @@ module.exports = {
       "no-underscore-dangle": 0,
       "no-console": 0,
       "max-len": ["error", { "code": 80 }],
+      "padded-blocks": 0,
       "react/jsx-sort-props": [1],
       "react/jsx-uses-react": 1,
       "react/jsx-uses-vars": 1,
