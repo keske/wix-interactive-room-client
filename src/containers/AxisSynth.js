@@ -3,18 +3,28 @@
 import * as React from 'react';
 
 // Components
+import Mouse from '../components/Mouse';
 import Gyroscope from '../components/Gyroscope';
 
 export default (): React.Node => (
-  <Gyroscope>
+  <Mouse>
     {
-      ({ acceleration }) => (
-        <div>
+      (mouse) => (
+        <Gyroscope>
           {
-            JSON.stringify(acceleration)
+            ({ acceleration }) => (
+              <div>
+                {
+                  `Mouse: ${JSON.stringify(mouse)}`
+                }
+                {
+                  `Acceleration: ${JSON.stringify(acceleration)}`
+                }
+              </div>
+            )
           }
-        </div>
+        </Gyroscope>
       )
     }
-  </Gyroscope>
+  </Mouse>
 );

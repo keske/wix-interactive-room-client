@@ -55,7 +55,7 @@ export default class Gyroscope extends React.Component<Props, State> {
     window.addEventListener('devicemotion', this.handleDeviceMotion, true);
   }
 
-  componentWillUnmount= () => {
+  componentWillUnmount = () => {
     window.removeEventListener('devicemotion', this.handleDeviceMotion, true);
   }
 
