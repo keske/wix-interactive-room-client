@@ -3,6 +3,7 @@
 import * as React from 'react';
 
 // Components
+import Cube from '../components/Cube';
 import Gyroscope from '../components/Gyroscope';
 import Mouse from '../components/Mouse';
 import Screen from '../components/Screen';
@@ -15,14 +16,13 @@ export default (): React.Node => (
           {
             ({ acceleration }) => (
               <Screen>
-                <div>
-                  {
-                    `Mouse: ${JSON.stringify(mouse)}`
-                  }
-                  {
-                    `Acceleration: ${JSON.stringify(acceleration)}`
-                  }
-                </div>
+                {
+                  (screen) => (
+                    <div>
+                      <Cube {...{ screen }} />
+                    </div>
+                  )
+                }
               </Screen>
             )
           }
