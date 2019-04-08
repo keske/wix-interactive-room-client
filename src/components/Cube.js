@@ -10,7 +10,6 @@ import Three from './Three';
 import type { Screen } from './Screen';
 
 type Props = {
-  scene: any,
   screen: Screen,
 };
 

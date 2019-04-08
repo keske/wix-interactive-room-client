@@ -3,16 +3,18 @@
 import * as React from 'react';
 
 // Types
+export type Acceleration = {
+  x: number,
+  y: number,
+  z: number,
+};
+
 type Props = {
   children: any,
 };
 
 type State = {
-  acceleration: {
-    x: number,
-    y: number,
-    z: number,
-  },
+  acceleration: Acceleration,
   accelerationIncludingGravity: {
     x: number,
     y: number,
