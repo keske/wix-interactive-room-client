@@ -3,10 +3,10 @@
 import * as React from 'react';
 
 // Components
+import Cube from '../components/Cube';
 import Gyroscope from '../components/Gyroscope';
 import Mouse from '../components/Mouse';
 import Screen from '../components/Screen';
-import Three from '../components/Three';
 
 export default (): React.Node => (
   <Mouse>
@@ -19,7 +19,7 @@ export default (): React.Node => (
                 {
                   (screen) => (
                     <div>
-                      <Three {...{ screen }} />
+                      <Cube {...{ screen }} />
                     </div>
                   )
                 }

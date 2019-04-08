@@ -7,18 +7,12 @@ import * as THREE from 'three';
 import type { Screen } from './Screen';
 
 type Props = {
+  addObjectsToTheScene: Function,
+  animateObjectsToTheScene: Function,
   screen: Screen,
 };
 
 export default class Scene extends React.Component<Props> {
-
-  constructor(props: Props) {
-    super(props);
-
-    this.start = this.start.bind(this);
-    this.stop = this.stop.bind(this);
-    this.animate = this.animate.bind(this);
-  }
 
   setScene = () => {
     this.scene = (
@@ -69,26 +63,14 @@ export default class Scene extends React.Component<Props> {
     this.renderer.setSize(width, height);
   }
 
-  addCube = () => {
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({ color: '#433F81' });
-
-    this.cube = new THREE.Mesh(geometry, material);
-    this.material = material;
-
-    this.scene.add(this.cube);
-  }
-
-  animateCube = () => {
-    this.cube.rotation.x += 0.01;
-    this.cube.rotation.y += 0.01;
-  }
-
   componentDidMount = () => {
+    const { addObjectsToTheScene } = this.props;
+
     this.setScene();
     this.setCamera();
     this.setRendener();
-    this.addCube();
+
+    addObjectsToTheScene(this.scene);
 
     this.mount.appendChild(this.renderer.domElement);
     this.start();
@@ -112,7 +94,9 @@ export default class Scene extends React.Component<Props> {
   }
 
   animate = () => {
-    this.animateCube();
+    const { animateObjectsToTheScene } = this.props;
+
+    animateObjectsToTheScene();
 
     this.renderScene();
     this.frameId = window.requestAnimationFrame(this.animate);
@@ -122,13 +106,9 @@ export default class Scene extends React.Component<Props> {
     this.renderer.render(this.scene, this.camera);
   }
 
-  animate: any
-
   camera: any
 
   frameId: any
-
-  material: any
 
   mount: any
 
@@ -136,11 +116,7 @@ export default class Scene extends React.Component<Props> {
 
   scene: any
 
-  start: any
-
-  stop : any
-
-  render() {
+  render = () => {
     const {
       screen: {
         width,
@@ -162,4 +138,5 @@ export default class Scene extends React.Component<Props> {
       />
     );
   }
+
 }
