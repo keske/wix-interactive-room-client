@@ -3,16 +3,18 @@
 import * as React from 'react';
 
 // Types
-type Props = {
-  children: any,
-};
-
-type State = {
+export type Mouse = {
   x: number,
   y: number,
 };
 
-export default class Mouse extends React.Component<Props, State> {
+type Props = {
+  children: any,
+};
+
+type State = Mouse;
+
+export default class MouseComponent extends React.Component<Props, State> {
 
   state = {
     x: 0,
