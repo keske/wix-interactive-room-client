@@ -10,7 +10,7 @@ import getRandomRGBColor from '../utils/getRandomRGBColor';
 import Three from './Three';
 
 // Types
-import type { Screen } from './Screen';
+import type { Screen } from '../components/Screen';
 
 type Props = {
   screen: Screen,
