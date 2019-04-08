@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as THREE from 'three';
 
 // Types
-import type { Screen } from '../components/Screen';
+import type { Screen } from '../types';
 
 type Props = {
   addObjectsToTheScene: Function,

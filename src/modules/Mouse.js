@@ -3,10 +3,7 @@
 import * as React from 'react';
 
 // Types
-export type Mouse = {
-  x: number,
-  y: number,
-};
+import type { Mouse } from '../types';
 
 type Props = {
   children: any,

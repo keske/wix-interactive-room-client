@@ -15,7 +15,7 @@ import * as serviceWorker from './utils/serviceWorker';
 import Apollo from './layers/Apollo';
 
 // Containers
-import AxisSynth from './containers/AxisSynth';
+import Page from './containers/Page';
 
 R.pipe(
   () => (
@@ -30,7 +30,7 @@ R.pipe(
                 <BrowserRouter>
                   <React.Fragment>
                     <Route
-                      component={AxisSynth}
+                      component={Page}
                       exact
                       path="/"
                     />

@@ -4,8 +4,7 @@ import * as React from 'react';
 import * as R from 'ramda';
 
 // Types
-import type { Acceleration } from '../modules/Gyroscope';
-import type { Mouse } from '../modules/Mouse';
+import type { Acceleration, Mouse } from '../types';
 
 type Props = {
   acceleration: Acceleration,

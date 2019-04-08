@@ -3,11 +3,7 @@
 import * as React from 'react';
 
 // Types
-export type Acceleration = {
-  x: number,
-  y: number,
-  z: number,
-};
+import type { Acceleration } from '../types';
 
 type Props = {
   children: any,
@@ -15,17 +11,6 @@ type Props = {
 
 type State = {
   acceleration: Acceleration,
-  accelerationIncludingGravity: {
-    x: number,
-    y: number,
-    z: number,
-  },
-  interval: number,
-  rotationRate: {
-    alpha: number,
-    beta: number,
-    gamma: number,
-  },
 };
 
 export default class Gyroscope extends React.Component<Props, State> {
@@ -35,17 +20,6 @@ export default class Gyroscope extends React.Component<Props, State> {
       x: 0,
       y: 0,
       z: 0,
-    },
-    accelerationIncludingGravity: {
-      x: 0,
-      y: 0,
-      z: 0,
-    },
-    interval: 0,
-    rotationRate: {
-      alpha: 0,
-      beta: 0,
-      gamma: 0,
     },
   };
 

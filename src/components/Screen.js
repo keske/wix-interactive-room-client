@@ -4,10 +4,7 @@ import * as React from 'react';
 import * as R from 'ramda';
 
 // Types
-export type Screen = {
-  width: number,
-  height: number,
-};
+import type { Screen } from '../types';
 
 type Props = {
   children: any,
