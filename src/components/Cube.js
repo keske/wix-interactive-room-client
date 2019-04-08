@@ -3,6 +3,9 @@
 import * as React from 'react';
 import * as THREE from 'three';
 
+// Utils
+import getRandomRGBColor from '../utils/getRandomRGBColor';
+
 // Components
 import Three from './Three';
 
@@ -13,17 +16,15 @@ type Props = {
   screen: Screen,
 };
 
-const getRnd = (min: number, max: number): number => (
-  Math.floor(Math.random() * (max - min + 1)) + min
-);
-
 export default class Cube extends React.Component<Props> {
 
   add = (scene: any) => {
     const size = 0.5;
+
     const geometry = new THREE.BoxGeometry(size, size, size);
+
     const material = new THREE.MeshBasicMaterial({
-      color: `rgb(${getRnd(0, 255)}, ${getRnd(0, 255)}, ${getRnd(0, 255)})`,
+      color: getRandomRGBColor(),
     });
 
     this.object = new THREE.Mesh(geometry, material);
