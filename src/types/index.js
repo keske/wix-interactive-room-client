@@ -15,3 +15,8 @@ export type Screen = {
   width: number,
   height: number,
 };
+
+export type Touch = {
+  x: number,
+  y: number,
+};
