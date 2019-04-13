@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
+import * as THREE from 'three';
 
 // Components
-import { Scene, cube } from '../modules/Three';
+import { Scene, cube, lens } from '../modules/Three';
 
 // Types
 import type { Acceleration, Mouse, Screen } from '../types';
@@ -21,17 +22,17 @@ export default (props: Props): React.Node => (
       {
         animate: {
           position: {
-            x: props.mouse.x / 100,
-            y: -(props.mouse.y / 100),
+            x: props.mouse.x / 150,
+            y: -(props.mouse.y / 150),
             z: 0,
           },
-          rotation: {
-            x: props.mouse.x / 100,
-            y: 0,
-            z: 0,
-          },
+          // rotation: {
+          //   x: props.mouse.x / 150,
+          //   y: props.mouse.y / 150,
+          //   z: 0,
+          // },
         },
-        object: cube(),
+        object: lens(),
       },
       {
         animate: {
@@ -46,7 +47,7 @@ export default (props: Props): React.Node => (
             z: 0,
           },
         },
-        object: cube(),
+        object: cube({ size: 4 }),
       },
     ]}
   />
