@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import * as THREE from 'three';
 
 // Components
 import { Scene } from '../modules/Three';
@@ -17,5 +18,15 @@ type Props = {
 export default (props: Props): React.Node => (
   <Scene
     {...props}
+    objects={[
+      {
+        object: new THREE.Mesh(
+          new THREE.BoxGeometry(1, 1, 1),
+          new THREE.MeshBasicMaterial({
+            color: 'red',
+          }),
+        ),
+      },
+    ]}
   />
 );

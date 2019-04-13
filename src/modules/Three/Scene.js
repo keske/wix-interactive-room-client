@@ -17,6 +17,7 @@ type Props = {
   // addObjects: Function,
   // animateObjects: Function,
   camera?: CameraConfig,
+  objects: Array<*>,
   screen: Screen,
 };
 
@@ -78,16 +79,22 @@ export default class Scene extends React.Component<Props> {
     this.renderer.setSize(width, height);
   }
 
-  componentDidMount = () => {
-    // TODO:
-    // const { addObjects } = this.props;
+  addObjects = () => {
+    const { objects } = this.props;
 
+    // eslint-disable-next-line
+    objects.map(({ object }) => {
+      this.scene.add(object);
+      this.objects.push(object);
+    });
+  }
+
+  componentDidMount = () => {
     this.setScene();
     this.setCamera();
     this.setRendener();
 
-    // TODO:
-    // addObjects(this.scene);
+    this.addObjects();
 
     this.mount.appendChild(this.renderer.domElement);
     this.start();
@@ -131,6 +138,8 @@ export default class Scene extends React.Component<Props> {
 
   mount: any
 
+  objects: any = []
+
   renderer: any
 
   scene: any
@@ -142,8 +151,6 @@ export default class Scene extends React.Component<Props> {
         height,
       },
     } = this.props;
-
-    console.log('render scene');
 
     return (
       <div
