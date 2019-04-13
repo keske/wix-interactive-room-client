@@ -15,8 +15,6 @@ type CameraConfig = {
 };
 
 type Props = {
-  // addObjects: Function,
-  // animateObjects: Function,
   camera?: CameraConfig,
   objects: Array<*>,
   screen: Screen,
@@ -58,7 +56,7 @@ export default class Scene extends React.Component<Props> {
       )
     );
 
-    this.camera.position.z = 4;
+    this.camera.position.z = 10;
   }
 
   setRendener = () => {
@@ -76,7 +74,8 @@ export default class Scene extends React.Component<Props> {
       })
     );
 
-    this.renderer.setClearColor(0x000000, 0);
+    // this.renderer.setClearColor(0x000000, 0);
+    this.renderer.setClearColor('black');
     this.renderer.setSize(width, height);
   }
 
@@ -174,6 +173,7 @@ export default class Scene extends React.Component<Props> {
           height,
 
           position: 'absolute',
+          zIndex: 0,
         }}
       />
     );

@@ -32,11 +32,12 @@ export default ({ acceleration, mouse }: Props): React.Node => (
     )({
       styles: {
         root: {
-          backgroundColor: 'yellow',
+          backgroundColor: 'white',
           top: 0,
           left: 0,
           padding: 7,
           position: 'absolute',
+          zIndex: 2,
         },
         text: {
           fontFamily: 'Helvetica',
