@@ -1,18 +1,37 @@
 // @flow
 
+import * as R from 'ramda';
 import * as React from 'react';
 import * as THREE from 'three';
 
 // Types
-import type { Screen } from './Screen';
+import type { Screen } from '../../types';
+
+type CameraConfig = {
+  frustumVerticalFieldOfView: number,
+  frustumAspectRatio: number,
+  frustumNearPlane: number,
+  frustumFarPlane: number,
+};
 
 type Props = {
-  addObjectsToTheScene: Function,
-  animateObjectsToTheScene: Function,
+  // addObjects: Function,
+  // animateObjects: Function,
+  camera?: CameraConfig,
+  objects: Array<*>,
   screen: Screen,
 };
 
 export default class Scene extends React.Component<Props> {
+
+  static defaultProps = {
+    camera: {
+      frustumVerticalFieldOfView: 75,
+      frustumAspectRatio: (window.innerWidth / window.innerHeight),
+      frustumNearPlane: 0.1,
+      frustumFarPlane: 1000,
+    },
+  }
 
   setScene = () => {
     this.scene = (
@@ -22,22 +41,20 @@ export default class Scene extends React.Component<Props> {
 
   setCamera = () => {
     const {
-      screen: {
-        width,
-        height,
+      camera: {
+        frustumVerticalFieldOfView,
+        frustumAspectRatio,
+        frustumNearPlane,
+        frustumFarPlane,
       },
     } = this.props;
 
     this.camera = (
       new THREE.PerspectiveCamera(
-        // Camera frustum vertical field of view.
-        75,
-        // Camera frustum aspect ratio.
-        width / height,
-        // Camera frustum near plane.
-        0.1,
-        //  Camera frustum far plane.
-        1000,
+        frustumVerticalFieldOfView,
+        frustumAspectRatio,
+        frustumNearPlane,
+        frustumFarPlane,
       )
     );
 
@@ -63,14 +80,37 @@ export default class Scene extends React.Component<Props> {
     this.renderer.setSize(width, height);
   }
 
-  componentDidMount = () => {
-    const { addObjectsToTheScene } = this.props;
+  addObjects = () => {
+    const { objects } = this.props;
 
+    // eslint-disable-next-line
+    objects.map(({ object }) => {
+      this.scene.add(object);
+      this.objects.push(object);
+    });
+  }
+
+  animateObjects = () => {
+    const { objects } = this.props;
+
+    // eslint-disable-next-line
+    objects.map(({ animate }, index) => {
+      // eslint-disable-next-line
+      R.keys(animate).map((property) => {
+        // eslint-disable-next-line
+        R.keys(animate[property]).map((key) => {
+          this.objects[index][property][key] = animate[property][key];
+        });
+      });
+    });
+  }
+
+  componentDidMount = () => {
     this.setScene();
     this.setCamera();
     this.setRendener();
 
-    addObjectsToTheScene(this.scene);
+    this.addObjects();
 
     this.mount.appendChild(this.renderer.domElement);
     this.start();
@@ -94,9 +134,7 @@ export default class Scene extends React.Component<Props> {
   }
 
   animate = () => {
-    const { animateObjectsToTheScene } = this.props;
-
-    animateObjectsToTheScene();
+    this.animateObjects();
 
     this.renderScene();
     this.frameId = window.requestAnimationFrame(this.animate);
@@ -111,6 +149,8 @@ export default class Scene extends React.Component<Props> {
   frameId: any
 
   mount: any
+
+  objects: any = []
 
   renderer: any
 
