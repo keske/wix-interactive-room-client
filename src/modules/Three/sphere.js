@@ -14,19 +14,15 @@ export default ({
   radius = 1,
   widthSegments = 32,
   heightSegments = 32,
-}: Props = {}): * => {
-  console.log('textureCube');
-
-  return (
-    new THREE.Mesh(
-      new THREE.SphereBufferGeometry(
-        radius,
-        widthSegments,
-        heightSegments,
-      ),
-      new THREE.MeshBasicMaterial({
-        color,
-      }),
-    )
-  );
-};
+}: Props = {}): * => (
+  new THREE.Mesh(
+    new THREE.SphereBufferGeometry(
+      radius,
+      widthSegments,
+      heightSegments,
+    ),
+    new THREE.MeshBasicMaterial({
+      color,
+    }),
+  )
+);
