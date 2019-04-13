@@ -1,5 +1,6 @@
 // @flow
 
+import * as R from 'ramda';
 import * as React from 'react';
 import * as THREE from 'three';
 
@@ -89,6 +90,36 @@ export default class Scene extends React.Component<Props> {
     });
   }
 
+  animateObjects = () => {
+    const { objects } = this.props;
+
+    // eslint-disable-next-line
+    objects.map(({ animate }, index) => {
+      R.keys(animate).map((key) => {
+        // console.log(animate[key]) -- xyz
+        R.keys(animate[key]).map((valueKey) => {
+          this.objects[index][key][valueKey] = animate[key][valueKey];
+        });
+        // R.map((values) => {
+          // values.map()
+          // console.log(values)
+        // this.objects[index][key] = animate[key][value];
+        // })(animate[key]);
+      });
+      // console.log(R.keys(animate))
+      // eslint-disable-next-line
+      // R.map((type) => {
+        // console.log(type)
+        // eslint-disable-next-line
+        // R.map((value) => {
+          // console.log(this.objects[index][type])
+          // this.objects[index][animate][type] = animate[type][value];
+        // })(type);
+      // })(animate);
+      // this.objects[index].rotation.x = animate.rotation.x;
+    });
+  }
+
   componentDidMount = () => {
     this.setScene();
     this.setCamera();
@@ -118,11 +149,7 @@ export default class Scene extends React.Component<Props> {
   }
 
   animate = () => {
-    // TODO:
-    // const { animateObjects } = this.props;
-
-    // TODO:
-    // animateObjects();
+    this.animateObjects();
 
     this.renderScene();
     this.frameId = window.requestAnimationFrame(this.animate);
