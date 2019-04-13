@@ -4,15 +4,32 @@ import * as React from 'react';
 import * as THREE from 'three';
 
 // Types
-import type { Screen } from '../types';
+import type { Screen } from '../../types';
+
+type CameraConfig = {
+  frustumVerticalFieldOfView: number,
+  frustumAspectRatio: number,
+  frustumNearPlane: number,
+  frustumFarPlane: number,
+};
 
 type Props = {
-  addObjectsToTheScene: Function,
-  animateObjectsToTheScene: Function,
+  // addObjects: Function,
+  // animateObjects: Function,
+  camera?: CameraConfig,
   screen: Screen,
 };
 
 export default class Scene extends React.Component<Props> {
+
+  static defaultProps = {
+    camera: {
+      frustumVerticalFieldOfView: 75,
+      frustumAspectRatio: (window.innerWidth / window.innerHeight),
+      frustumNearPlane: 0.1,
+      frustumFarPlane: 1000,
+    },
+  }
 
   setScene = () => {
     this.scene = (
@@ -22,22 +39,20 @@ export default class Scene extends React.Component<Props> {
 
   setCamera = () => {
     const {
-      screen: {
-        width,
-        height,
+      camera: {
+        frustumVerticalFieldOfView,
+        frustumAspectRatio,
+        frustumNearPlane,
+        frustumFarPlane,
       },
     } = this.props;
 
     this.camera = (
       new THREE.PerspectiveCamera(
-        // Camera frustum vertical field of view.
-        75,
-        // Camera frustum aspect ratio.
-        width / height,
-        // Camera frustum near plane.
-        0.1,
-        //  Camera frustum far plane.
-        1000,
+        frustumVerticalFieldOfView,
+        frustumAspectRatio,
+        frustumNearPlane,
+        frustumFarPlane,
       )
     );
 
@@ -64,13 +79,15 @@ export default class Scene extends React.Component<Props> {
   }
 
   componentDidMount = () => {
-    const { addObjectsToTheScene } = this.props;
+    // TODO:
+    // const { addObjects } = this.props;
 
     this.setScene();
     this.setCamera();
     this.setRendener();
 
-    addObjectsToTheScene(this.scene);
+    // TODO:
+    // addObjects(this.scene);
 
     this.mount.appendChild(this.renderer.domElement);
     this.start();
@@ -94,9 +111,11 @@ export default class Scene extends React.Component<Props> {
   }
 
   animate = () => {
-    const { animateObjectsToTheScene } = this.props;
+    // TODO:
+    // const { animateObjects } = this.props;
 
-    animateObjectsToTheScene();
+    // TODO:
+    // animateObjects();
 
     this.renderScene();
     this.frameId = window.requestAnimationFrame(this.animate);
@@ -123,6 +142,8 @@ export default class Scene extends React.Component<Props> {
         height,
       },
     } = this.props;
+
+    console.log('render scene');
 
     return (
       <div

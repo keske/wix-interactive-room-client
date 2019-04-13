@@ -4,13 +4,13 @@ import * as React from 'react';
 import * as THREE from 'three';
 
 // Utils
-import getRandomRGBColor from '../utils/getRandomRGBColor';
+import getRandomRGBColor from '../../utils/getRandomRGBColor';
 
 // Components
-import Three from './Three';
+import Scene from './Scene';
 
 // Types
-import type { Acceleration, Mouse, Screen } from '../types';
+import type { Acceleration, Mouse, Screen } from '../../types';
 
 type Props = {
   acceleration: Acceleration,
@@ -49,12 +49,12 @@ export default class Cube extends React.Component<Props> {
   object: any
 
   render = () => (
-    <Three
+    <Scene
       {...this.props}
-      addObjectsToTheScene={(scene) => {
+      addObjects={(scene) => {
         this.add(scene);
       }}
-      animateObjectsToTheScene={() => {
+      animateObjects={() => {
         this.animate();
       }}
     />
