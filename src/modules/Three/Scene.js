@@ -95,28 +95,13 @@ export default class Scene extends React.Component<Props> {
 
     // eslint-disable-next-line
     objects.map(({ animate }, index) => {
-      R.keys(animate).map((key) => {
-        // console.log(animate[key]) -- xyz
-        R.keys(animate[key]).map((valueKey) => {
-          this.objects[index][key][valueKey] = animate[key][valueKey];
-        });
-        // R.map((values) => {
-          // values.map()
-          // console.log(values)
-        // this.objects[index][key] = animate[key][value];
-        // })(animate[key]);
-      });
-      // console.log(R.keys(animate))
       // eslint-disable-next-line
-      // R.map((type) => {
-        // console.log(type)
+      R.keys(animate).map((property) => {
         // eslint-disable-next-line
-        // R.map((value) => {
-          // console.log(this.objects[index][type])
-          // this.objects[index][animate][type] = animate[type][value];
-        // })(type);
-      // })(animate);
-      // this.objects[index].rotation.x = animate.rotation.x;
+        R.keys(animate[property]).map((key) => {
+          this.objects[index][property][key] = animate[property][key];
+        });
+      });
     });
   }
 
