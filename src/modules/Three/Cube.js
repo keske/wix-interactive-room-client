@@ -35,12 +35,6 @@ export default class Cube extends React.Component<Props> {
   }
 
   animate = () => {
-    // const { acceleration: { x, y, z } } = this.props;
-
-    // this.object.rotation.x = x;
-    // this.object.rotation.y = y;
-    // this.object.rotation.z = z;
-
     this.object.rotation.x += 0.01;
     this.object.rotation.y += 0.01;
     this.object.rotation.z += 0.01;

@@ -39,6 +39,26 @@ export default (props: Props): React.Node => (
           }),
         ),
       },
+      {
+        animate: {
+          position: {
+            x: props.mouse.x / 50,
+            y: -(props.mouse.y / 50),
+            z: 0,
+          },
+          rotation: {
+            x: props.mouse.x / 50,
+            y: props.mouse.y / 50,
+            z: 0,
+          },
+        },
+        object: new THREE.Mesh(
+          new THREE.BoxGeometry(0.5, 0.5, 0.5),
+          new THREE.MeshBasicMaterial({
+            color: 'blue',
+          }),
+        ),
+      },
     ]}
   />
 );
