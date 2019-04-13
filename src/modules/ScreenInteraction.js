@@ -3,19 +3,26 @@
 import * as React from 'react';
 
 // Types
-import type { Mouse } from '../types';
+import type { MouseOrTouchPosition } from '../types';
 
 type Props = {
   children: any,
 };
 
-type State = Mouse;
+type State = MouseOrTouchPosition;
 
-export default class TouchComponent extends React.Component<Props, State> {
+export default class ScreenInteraction extends React.Component<Props, State> {
 
   state = {
     x: 0,
     y: 0,
+  };
+
+  handleMouseMove = (event: { screenX: number, screenY: number }) => {
+    this.setState({
+      x: event.screenX,
+      y: event.screenY,
+    });
   };
 
   handleTouchMove = (event: any) => {
@@ -27,6 +34,9 @@ export default class TouchComponent extends React.Component<Props, State> {
 
   render = () => (
     <div
+      onMouseMove={(event) => {
+        this.handleMouseMove(event);
+      }}
       onTouchMove={(event) => {
         this.handleTouchMove(event);
       }}

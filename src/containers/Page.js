@@ -6,11 +6,11 @@ import * as React from 'react';
 import AxisSynth from './AxisSynth';
 import Debbuger from '../components/Debbuger';
 import Gyroscope from '../modules/Gyroscope';
-import Mouse from '../modules/Mouse';
+import ScreenInteraction from '../modules/ScreenInteraction';
 import Screen from '../components/Screen';
 
 export default (): React.Node => (
-  <Mouse>
+  <ScreenInteraction>
     {
       (mouse) => (
         <Gyroscope>
@@ -31,5 +31,5 @@ export default (): React.Node => (
         </Gyroscope>
       )
     }
-  </Mouse>
+  </ScreenInteraction>
 );

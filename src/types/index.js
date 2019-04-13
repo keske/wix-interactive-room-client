@@ -6,7 +6,7 @@ export type Acceleration = {
   z: number,
 };
 
-export type Mouse = {
+export type MouseOrTouchPosition = {
   x: number,
   y: number,
 };
@@ -14,9 +14,4 @@ export type Mouse = {
 export type Screen = {
   width: number,
   height: number,
-};
-
-export type Touch = {
-  x: number,
-  y: number,
 };
