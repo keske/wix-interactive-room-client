@@ -1,10 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import * as THREE from 'three';
 
 // Components
-import { Scene } from '../modules/Three';
+import { Scene, cube } from '../modules/Three';
 
 // Types
 import type { Acceleration, Mouse, Screen } from '../types';
@@ -32,12 +31,7 @@ export default (props: Props): React.Node => (
             z: 0,
           },
         },
-        object: new THREE.Mesh(
-          new THREE.BoxGeometry(1, 1, 1),
-          new THREE.MeshBasicMaterial({
-            color: '#FFF',
-          }),
-        ),
+        object: cube(),
       },
       {
         animate: {
@@ -52,12 +46,7 @@ export default (props: Props): React.Node => (
             z: 0,
           },
         },
-        object: new THREE.Mesh(
-          new THREE.BoxGeometry(0.5, 0.5, 0.5),
-          new THREE.MeshBasicMaterial({
-            color: '#FFF',
-          }),
-        ),
+        object: cube(),
       },
     ]}
   />

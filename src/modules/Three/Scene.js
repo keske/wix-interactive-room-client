@@ -58,7 +58,7 @@ export default class Scene extends React.Component<Props> {
       )
     );
 
-    this.camera.position.z = 4;
+    this.camera.position.z = 10;
   }
 
   setRendener = () => {
