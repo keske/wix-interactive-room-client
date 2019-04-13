@@ -76,7 +76,8 @@ export default class Scene extends React.Component<Props> {
       })
     );
 
-    this.renderer.setClearColor(0x000000, 0);
+    // this.renderer.setClearColor(0x000000, 0);
+    this.renderer.setClearColor('black');
     this.renderer.setSize(width, height);
   }
 
@@ -174,6 +175,7 @@ export default class Scene extends React.Component<Props> {
           height,
 
           position: 'absolute',
+          zIndex: 0,
         }}
       />
     );
