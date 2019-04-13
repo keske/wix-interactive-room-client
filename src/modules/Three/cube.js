@@ -3,13 +3,13 @@
 import * as THREE from 'three';
 
 type Props = {
-  size: number,
   color: string,
+  size: number,
 };
 
 export default ({
-  size = 1,
   color = '#FFF',
+  size = 1,
 }: Props = {}): * => (
   new THREE.Mesh(
     new THREE.BoxGeometry(size, size, size),

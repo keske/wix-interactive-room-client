@@ -3,21 +3,29 @@
 import * as THREE from 'three';
 
 type Props = {
-  size: number,
   color: string,
+  radius: number,
+  widthSegments: number,
+  heightSegments: number,
 };
 
 export default ({
-  size = 1,
   color = '#FFF',
+  radius = 1,
+  widthSegments = 32,
+  heightSegments = 32,
 }: Props = {}): * => {
   console.log('textureCube');
 
   return (
     new THREE.Mesh(
-      new THREE.SphereBufferGeometry(1, 32, 16),
+      new THREE.SphereBufferGeometry(
+        radius,
+        widthSegments,
+        heightSegments,
+      ),
       new THREE.MeshBasicMaterial({
-        color: 0x111111,
+        color,
       }),
     )
   );

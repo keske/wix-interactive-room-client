@@ -15,8 +15,6 @@ type CameraConfig = {
 };
 
 type Props = {
-  // addObjects: Function,
-  // animateObjects: Function,
   camera?: CameraConfig,
   objects: Array<*>,
   screen: Screen,

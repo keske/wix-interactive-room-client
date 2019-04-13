@@ -1,10 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import * as THREE from 'three';
 
 // Components
-import { Scene, cube, lens } from '../modules/Three';
+import { Scene, cube, sphere } from '../modules/Three';
 
 // Types
 import type { Acceleration, Mouse, Screen } from '../types';
@@ -26,13 +25,8 @@ export default (props: Props): React.Node => (
             y: -(props.mouse.y / 150),
             z: 0,
           },
-          // rotation: {
-          //   x: props.mouse.x / 150,
-          //   y: props.mouse.y / 150,
-          //   z: 0,
-          // },
         },
-        object: lens(),
+        object: sphere(),
       },
       {
         animate: {
