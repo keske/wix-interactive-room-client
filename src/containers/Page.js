@@ -21,7 +21,7 @@ export default (): React.Node => (
                   (screen) => (
                     <div>
                       <Debbuger {...{ acceleration, mouse }} />
-                      <AxisSynth {...{ screen }} />
+                      <AxisSynth {...{ acceleration, mouse, screen }} />
                     </div>
                   )
                 }

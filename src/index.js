@@ -23,23 +23,7 @@ R.pipe(
   ),
   (root) => {
     ReactDOM.render((
-      <Apollo>
-        {
-          ({ client }) => (
-            <ApolloProvider {...{ client }}>
-                <BrowserRouter>
-                  <React.Fragment>
-                    <Route
-                      component={Page}
-                      exact
-                      path="/"
-                    />
-                  </React.Fragment>
-                </BrowserRouter>
-            </ApolloProvider>
-          )
-        }
-      </Apollo>
+      false
     ), root);
 
     serviceWorker.unregister();

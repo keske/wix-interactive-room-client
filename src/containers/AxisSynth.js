@@ -6,12 +6,14 @@ import * as React from 'react';
 import Cube from '../modules/Cube';
 
 // Types
-import type { Screen } from '../types';
+import type { Acceleration, Mouse, Screen } from '../types';
 
 type Props = {
+  acceleration: Acceleration,
+  mouse: Mouse,
   screen: Screen,
 };
 
-export default ({ screen }: Props): React.Node => (
-  <Cube {...{ screen }} />
+export default (props: Props): React.Node => (
+  <Cube {...props} />
 );
