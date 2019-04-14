@@ -16,19 +16,28 @@ type CameraConfig = {
 
 type Props = {
   camera?: CameraConfig,
+  children: any,
   objects: Array<*>,
   screen: Screen,
 };
 
-export default class Scene extends React.Component<Props> {
+type State = {
+  loaded: boolean,
+};
+
+export default class Scene extends React.Component<Props, State> {
 
   static defaultProps = {
     camera: {
       frustumVerticalFieldOfView: 75,
       frustumAspectRatio: (window.innerWidth / window.innerHeight),
       frustumNearPlane: 0.1,
-      frustumFarPlane: 1000,
+      frustumFarPlane: 100000,
     },
+  }
+
+  state = {
+    loaded: false,
   }
 
   setScene = () => {
@@ -56,7 +65,7 @@ export default class Scene extends React.Component<Props> {
       )
     );
 
-    this.camera.position.z = 10;
+    this.camera.position.z = 300;
   }
 
   setRendener = () => {
@@ -76,6 +85,7 @@ export default class Scene extends React.Component<Props> {
 
     // this.renderer.setClearColor(0x000000, 0);
     this.renderer.setClearColor('black');
+    this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(width, height);
   }
 
@@ -124,6 +134,10 @@ export default class Scene extends React.Component<Props> {
     if (!this.frameId) {
       // eslint-disable-next-line
       this.frameId = requestAnimationFrame(this.animate);
+
+      this.setState({
+        loaded: true,
+      });
     }
   }
 
@@ -156,6 +170,7 @@ export default class Scene extends React.Component<Props> {
   scene: any
 
   render = () => {
+    const { loaded } = this.state;
     const {
       screen: {
         width,
@@ -175,7 +190,15 @@ export default class Scene extends React.Component<Props> {
           position: 'absolute',
           zIndex: 0,
         }}
-      />
+      >
+        {
+          loaded && (
+            this.props.children({
+              scene: this.scene,
+            })
+          )
+        }
+      </div>
     );
   }
 
