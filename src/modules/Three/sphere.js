@@ -11,7 +11,7 @@ type Props = {
 
 export default ({
   color = '#FFF',
-  radius = 1,
+  radius = 10,
   widthSegments = 32,
   heightSegments = 32,
 }: Props = {}): * => (
