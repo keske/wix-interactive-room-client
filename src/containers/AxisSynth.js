@@ -18,13 +18,19 @@ type Props = {
 };
 
 type State = {
+  endPoint: string,
   id: number | null,
 };
 
 export default class AxisSynth extends React.Component<Props, State> {
 
-  state = {
-    id: null,
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      id: null,
+      endPoint: 'http://192.168.1.16:3030/',
+    };
   }
 
   componentDidMount = () => {
@@ -57,12 +63,13 @@ export default class AxisSynth extends React.Component<Props, State> {
   }
 
   registerDevice = () => {
-    const id = +(new Date());
+    const { endPoint } = this.state;
 
-    const objects = R.omit(['object'], this.composeObjects(false));
+    const id = +(new Date());
+    const objects = this.composeObjects(false);
 
     this.setState(() => {
-      axios.post('http://localhost:3030/', {
+      axios.post(endPoint, {
         id,
         type: 'axissynth',
         objects,
@@ -72,12 +79,12 @@ export default class AxisSynth extends React.Component<Props, State> {
     });
   }
 
-  updateDevice = () => {
-    const { id } = this.state;
+  updateDevice = async () => {
+    const { endPoint, id } = this.state;
 
-    const objects = R.omit(['object'], this.composeObjects(false));
+    const objects = this.composeObjects(false);
 
-    axios.patch('http://localhost:3030/', {
+    await axios.patch(endPoint, {
       id,
       device: {
         objects,
