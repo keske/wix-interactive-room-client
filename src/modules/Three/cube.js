@@ -9,7 +9,7 @@ type Props = {
 
 export default ({
   color = '#FFF',
-  size = 1,
+  size = 20,
 }: Props = {}): * => (
   new THREE.Mesh(
     new THREE.BoxGeometry(size, size, size),

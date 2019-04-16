@@ -11,9 +11,6 @@ import { BrowserRouter, Route } from 'react-router-dom';
 // Utils
 import * as serviceWorker from './utils/serviceWorker';
 
-// Layers
-// import Apollo from './layers/Apollo';
-
 // Containers
 import Page from './containers/Page';
 
@@ -37,32 +34,3 @@ R.pipe(
     serviceWorker.unregister();
   },
 )();
-
-// R.pipe(
-//   () => (
-//     document.getElementById('root')
-//   ),
-//   (root) => {
-//     ReactDOM.render((
-//       <Apollo>
-//         {
-//           ({ client }) => (
-//             <ApolloProvider {...{ client }}>
-//                 <BrowserRouter>
-//                   <React.Fragment>
-//                     <Route
-//                       component={Page}
-//                       exact
-//                       path="/"
-//                     />
-//                   </React.Fragment>
-//                 </BrowserRouter>
-//             </ApolloProvider>
-//           )
-//         }
-//       </Apollo>
-//     ), root);
-
-//     serviceWorker.unregister();
-//   },
-// )();

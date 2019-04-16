@@ -1,9 +1,12 @@
 // @flow
 
+import * as R from 'ramda';
 import * as React from 'react';
 
+import axios from 'axios';
+
 // Components
-import { Scene, cube, sphere } from '../modules/Three';
+import { Scene, cube } from '../modules/Three';
 
 // Types
 import type { Acceleration, Mouse, Screen } from '../types';
@@ -14,35 +17,98 @@ type Props = {
   screen: Screen,
 };
 
-export default (props: Props): React.Node => (
-  <Scene
-    {...props}
-    objects={[
-      {
-        animate: {
-          position: {
-            x: props.mouse.x / 150,
-            y: -(props.mouse.y / 150),
-            z: 0,
-          },
+type State = {
+  endPoint: string,
+  id: number | null,
+};
+
+export default class AxisSynth extends React.Component<Props, State> {
+
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      id: null,
+      endPoint: 'http://192.168.1.16:3030/',
+    };
+  }
+
+  componentDidMount = () => {
+    this.registerDevice();
+
+    this.timer = setInterval(() => this.updateDevice(), 100);
+  }
+
+  composeObjects = (scene: boolean = true) => {
+    const { mouse } = this.props;
+
+    return [{
+      animate: {
+        position: {
+          x: mouse.x - (window.innerWidth / 2),
+          y: -(mouse.y - (window.innerHeight / 2)),
+          z: (mouse.x - mouse.y) / 10,
         },
-        object: sphere(),
-      },
-      {
-        animate: {
-          position: {
-            x: props.mouse.x / 50,
-            y: -(props.mouse.y / 50),
-            z: 0,
-          },
-          rotation: {
-            x: props.mouse.x / 50,
-            y: props.mouse.y / 50,
-            z: 0,
-          },
+        rotation: {
+          x: mouse.x / 20,
+          y: mouse.y / 20,
+          z: 0,
         },
-        object: cube({ size: 4 }),
       },
-    ]}
-  />
-);
+      object: scene && cube(),
+      render: {
+        type: 'cube',
+      },
+    }];
+  }
+
+  registerDevice = () => {
+    const { endPoint } = this.state;
+
+    const id = +(new Date());
+    const objects = this.composeObjects(false);
+
+    this.setState(() => {
+      axios.post(endPoint, {
+        id,
+        type: 'axissynth',
+        objects,
+      });
+
+      return { id };
+    });
+  }
+
+  updateDevice = async () => {
+    const { endPoint, id } = this.state;
+
+    const objects = this.composeObjects(false);
+
+    await axios.patch(endPoint, {
+      id,
+      device: {
+        objects,
+      },
+    });
+  }
+
+  timer: any
+
+  render = () => {
+    const { id } = this.state;
+
+    return (
+      id && (
+        <Scene
+          {...this.props}
+          objects={this.composeObjects()}
+        >
+          {
+            (/* { scene } */) => false
+          }
+        </Scene>
+      )
+    );
+  }
+
+}
