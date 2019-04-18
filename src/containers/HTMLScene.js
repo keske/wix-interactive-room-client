@@ -5,20 +5,23 @@ import * as React from 'react';
 
 // Components
 import Cube from '../components/Cube';
-// import Lens from '../components/Lens';
-// import Ticker from '../components/Ticker';
+import Ticker from '../components/Ticker';
 
-export default (): React.Node => (
+// Types
+import type { MouseOrTouchPosition } from '../types';
+
+type Props = {
+  mouse: MouseOrTouchPosition,
+};
+
+export default ({ mouse }: Props): React.Node => (
   R.pipe(
     ({ styles }) => (
       <div style={styles.root}>
-        <Cube />
-        {
-          // <Lens />
-        }
-        {
-          // <Ticker text="DJ MASHA | COMPUTER CRAPHICS | ANDREY KESKE" />
-        }
+        <Cube {...{ mouse }}/>
+        <div style={styles.ticker}>
+          <Ticker text="DJ MASHA | COMPUTER CRAPHICS | ANDREY KESKE" />
+        </div>
       </div>
     ),
   )({
@@ -26,6 +29,12 @@ export default (): React.Node => (
       root: {
         position: 'absolute',
         zIndex: 1,
+      },
+
+      ticker: {
+        position: 'absolute',
+        zIndex: 1,
+        top: 0,
       },
     },
   })

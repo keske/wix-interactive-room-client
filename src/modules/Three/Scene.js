@@ -84,7 +84,6 @@ export default class Scene extends React.Component<Props, State> {
     );
 
     this.renderer.setClearColor(0x000000, 0);
-    // this.renderer.setClearColor('black');
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(width, height);
   }

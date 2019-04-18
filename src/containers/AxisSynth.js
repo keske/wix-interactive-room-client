@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import * as THREE from 'three';
 
 import axios from 'axios';
 
@@ -52,8 +51,8 @@ export default class AxisSynth extends React.Component<Props, State> {
           z: (mouse.x - mouse.y) / 10,
         },
         rotation: {
-          x: mouse.x / 20,
-          y: mouse.y / 20,
+          x: mouse.y / 20,
+          y: mouse.x / 20,
           z: 0,
         },
       },

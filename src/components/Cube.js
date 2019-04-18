@@ -1,17 +1,18 @@
 // @flow
 
-import * as R from 'ramda';
 import * as React from 'react';
 
-// Components
-import Ticker from './Ticker';
+// Types
+import type { MouseOrTouchPosition } from '../types';
 
 type Props = {
+  mouse: MouseOrTouchPosition,
   size?: number,
 };
 
 export default ({
-  size = 400,
+  mouse,
+  size = 500,
 }: Props): React.Node => (
   <div>
     <style>
@@ -22,8 +23,9 @@ export default ({
           padding: 300px;
         }
         .wrap {
-          perspective: 500px;
-          perspective-origin: 50% ${size / 2}px;
+          perspective: ${(mouse.x / 2)}px;
+          perspective-origin: ${(mouse.y / 20)}% ${size / 2}px;
+          transform: scale(${mouse.x / 800});
         }
         .cube {
           position: relative;
@@ -58,10 +60,9 @@ export default ({
         .top {
           transform: rotateX(-90deg) translateY(-${size / 2}px);
           transform-origin: top center;
-          transform: scaleY(-1);
         }
         .top .invert {
-          transform: scaleY(-1);
+          transform: scaleY(1);
         }
         .bottom {
           transform: rotateX(90deg) translateY(${size / 2}px);
@@ -80,41 +81,46 @@ export default ({
           }
           <div class="back">
             <div class="invert">
-              <Ticker
-                duration={3000}
-                text={R.range(0, 10).map(() => 'DJ MASHA')}
+              <img
+                height={`${size}px`}
+                src="https://payload.cargocollective.com/1/1/45123/13845407/CENTER.png?fbclid=IwAR16uMoFITBAdiMNAgeZNciPLOwHrmYtEItuH8zMZu529abqwUKsvl00zDk"
+                width={`${size}px`}
               />
             </div>
           </div>
           <div class="top">
             <div class="invert">
-              <Ticker
-                duration={1000}
-                text="ANDREY KESKE"
+              <img
+                height={`${size}px`}
+                src="https://payload.cargocollective.com/1/1/45123/13845407/TOP.png?fbclid=IwAR1kyagtWa4bUOIVuAfZlFbAHa5FA8TS_RyHsX03NuOLyLm0zNN77BhKntw"
+                width={`${size}px`}
               />
             </div>
           </div>
           <div class="bottom">
             <div class="invert">
-              <Ticker
-                duration={10000}
-                text="KISS MY ASS"
+              <img
+                height={`${size}px`}
+                src="https://payload.cargocollective.com/1/1/45123/13845407/BOTTOM.png?fbclid=IwAR0VnhGzCDYeSA5Vqfh6lrpPhqGD38j80gOKtBTMf0iXAibYTwh19244XZ4"
+                width={`${size}px`}
               />
             </div>
           </div>
           <div class="left">
             <div class="invert">
-              <Ticker
-                duration={5000}
-                text="COMPUTER CRAPHICS"
+              <img
+                height={`${size}px`}
+                src="https://payload.cargocollective.com/1/1/45123/13845407/LEFT.png?fbclid=IwAR1q4HSr7uqJ9Fn6H1Njw-8k2cC4lkc6qVZFLTpuDtzR8HBF88g36M9shaw"
+                width={`${size}px`}
               />
             </div>
           </div>
           <div class="right">
             <div class="invert">
-              <Ticker
-                duration={100000}
-                text="ASS MY KISS"
+              <img
+                height={`${size}px`}
+                src="https://payload.cargocollective.com/1/1/45123/13845407/RIGHT.png?fbclid=IwAR1WNkKyQFg0tD1y6YM-P2P8lLniCyDDy6Mbwuxf1asmvNewcds4yM_doso"
+                width={`${size}px`}
               />
             </div>
           </div>

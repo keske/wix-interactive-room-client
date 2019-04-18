@@ -62,7 +62,7 @@ export default ({
         whiteSpace: 'nowrap',
 
         color: '#FFF',
-        fontSize: '100px',
+        fontSize: '50px',
         fontFamily: 'Impact',
       },
     },

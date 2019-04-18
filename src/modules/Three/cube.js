@@ -8,8 +8,7 @@ type Props = {
 };
 
 export default ({
-  color = 'red',
-  // color = '#FFF',
+  color = '#FFF',
   size = 20,
 }: Props = {}): * => (
   new THREE.Mesh(
