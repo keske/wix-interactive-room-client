@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import * as THREE from 'three';
 
 import axios from 'axios';
 
@@ -105,13 +106,60 @@ export default class AxisSynth extends React.Component<Props, State> {
           objects={this.composeObjects()}
         >
           {
-            (/* { scene } */) => (
-              <div style={{ top: 100, left: 100 }}>
-                <h1 style={{ color: '#FFF' }}>
-                  Hello
-                </h1>
-              </div>
-            )
+            ({ scene }) => {
+              var loader = new THREE.TextureLoader();
+
+              const geometry = new THREE.SphereBufferGeometry(50, 10, 10);
+              const textureCube = new THREE.CubeTextureLoader()
+                .setPath('./')
+                // .load('1.jpg');
+                .load(['1.jpg', '1.jpg', '1.jpg', '1.jpg', '1.jpg', '1.jpg']);
+
+              const texture = new THREE.TextureLoader().load('1.jpg');
+
+              textureCube.mapping = THREE.CubeRefractionMapping;
+              const material = new THREE.MeshBasicMaterial({
+                color: 0xffffff,
+                map: texture,
+                // envMap: textureCube,
+                refractionRatio: 0.95,
+              });
+
+              loader.load(
+                // resource URL
+                './1.jpg',
+
+                // onLoad callback
+                function (texture) {
+                  // in this example we create the material when the texture is loaded
+                  var material = new THREE.MeshBasicMaterial( {
+                    map: texture,
+                    refractionRatio: 0.95,
+                   } );
+                },
+
+                // onProgress callback currently not supported
+                undefined,
+
+                // onError callback
+                function ( err ) {
+                  console.error( 'An error happened.' );
+                  console.error(err);
+                }
+              );
+
+              const mesh = new THREE.Mesh(geometry, material);
+
+              scene.add(mesh);
+
+              return (
+                <div style={{ top: 100, left: 100 }}>
+                  <h1 style={{ color: '#FFF' }}>
+                    Hello
+                  </h1>
+                </div>
+              );
+            }
           }
         </Scene>
       )
