@@ -5,7 +5,6 @@ import * as R from 'ramda';
 
 import ReactDOM from 'react-dom';
 
-// import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 // Utils

@@ -22,5 +22,6 @@ export default ({ children }: Props): React.Node => (
   )({
     width: window.innerWidth,
     height: window.innerHeight,
+    backgroundColor: '#000',
   })
 );

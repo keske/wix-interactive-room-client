@@ -1,6 +1,5 @@
 // @flow
 
-import * as R from 'ramda';
 import * as React from 'react';
 
 import axios from 'axios';
@@ -9,11 +8,11 @@ import axios from 'axios';
 import { Scene, cube } from '../modules/Three';
 
 // Types
-import type { Acceleration, Mouse, Screen } from '../types';
+import type { Acceleration, MouseOrTouchPosition, Screen } from '../types';
 
 type Props = {
   acceleration: Acceleration,
-  mouse: Mouse,
+  mouse: MouseOrTouchPosition,
   screen: Screen,
 };
 
@@ -30,7 +29,7 @@ export default class AxisSynth extends React.Component<Props, State> {
     this.state = {
       id: null,
       endPoint: process.env.NODE_ENV === 'development'
-        ? 'http://192.168.1.16:3030/'
+        ? 'http://10.0.1.102:3030/'
         : 'http://174.138.54.13:3030/',
     };
   }
@@ -52,8 +51,8 @@ export default class AxisSynth extends React.Component<Props, State> {
           z: (mouse.x - mouse.y) / 10,
         },
         rotation: {
-          x: mouse.x / 20,
-          y: mouse.y / 20,
+          x: mouse.y / 20,
+          y: mouse.x / 20,
           z: 0,
         },
       },
@@ -106,7 +105,7 @@ export default class AxisSynth extends React.Component<Props, State> {
           objects={this.composeObjects()}
         >
           {
-            (/* { scene } */) => false
+            () => false
           }
         </Scene>
       )
