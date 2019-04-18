@@ -30,7 +30,7 @@ export default class AxisSynth extends React.Component<Props, State> {
     this.state = {
       id: null,
       endPoint: process.env.NODE_ENV === 'development'
-        ? 'http://192.168.1.16:3030/'
+        ? 'http://10.0.1.102:3030/'
         : 'http://174.138.54.13:3030/',
     };
   }
