@@ -3,13 +3,14 @@
 import * as R from 'ramda';
 import * as React from 'react';
 
+// Components
+import Ticker from '../components/Ticker';
+
 export default (): React.Node => (
   R.pipe(
     ({ styles }) => (
       <div style={styles.root}>
-        <h1 style={{ color: '#FFF' }}>
-          Hello
-        </h1>
+        <Ticker />
       </div>
     ),
   )({

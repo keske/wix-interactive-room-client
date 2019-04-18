@@ -1,6 +1,5 @@
 // @flow
 
-import * as R from 'ramda';
 import * as React from 'react';
 
 import axios from 'axios';
@@ -9,11 +8,11 @@ import axios from 'axios';
 import { Scene, cube } from '../modules/Three';
 
 // Types
-import type { Acceleration, Mouse, Screen } from '../types';
+import type { Acceleration, MouseOrTouchPosition, Screen } from '../types';
 
 type Props = {
   acceleration: Acceleration,
-  mouse: Mouse,
+  mouse: MouseOrTouchPosition,
   screen: Screen,
 };
 
