@@ -3,12 +3,15 @@
 import * as R from 'ramda';
 import * as React from 'react';
 
+// Components
+import Ticker from './Ticker';
+
 type Props = {
   size?: number,
 };
 
 export default ({
-  size = 500,
+  size = 400,
 }: Props): React.Node => (
   <div>
     <style>
@@ -31,23 +34,34 @@ export default ({
           position: absolute;
           width: ${size}px;
           height: ${size}px;
-
-          border: 1px solid #FFF;
         }
         .back {
           transform: translateZ(-${size / 2}px) rotateY(180deg);
+        }
+        .back .invert {
+          transform: scaleX(-1);
         }
         .right {
           transform: rotateY(-270deg) translateX(${size / 2}px);
           transform-origin: top right;
         }
+        .right .invert {
+          transform: scaleX(-1);
+        }
         .left {
           transform: rotateY(270deg) translateX(-${size / 2}px);
           transform-origin: center left;
         }
+        .left .invert {
+          transform: scaleX(-1);
+        }
         .top {
           transform: rotateX(-90deg) translateY(-${size / 2}px);
           transform-origin: top center;
+          transform: scaleY(-1);
+        }
+        .top .invert {
+          transform: scaleY(-1);
         }
         .bottom {
           transform: rotateX(90deg) translateY(${size / 2}px);
@@ -64,11 +78,46 @@ export default ({
           {
             // <div class="front">front</div>
           }
-          <div class="back">back</div>
-          <div class="top">top</div>
-          <div class="bottom">bottom</div>
-          <div class="left">left</div>
-          <div class="right">right</div>
+          <div class="back">
+            <div class="invert">
+              <Ticker
+                duration={3000}
+                text={R.range(0, 10).map(() => 'DJ MASHA')}
+              />
+            </div>
+          </div>
+          <div class="top">
+            <div class="invert">
+              <Ticker
+                duration={1000}
+                text="ANDREY KESKE"
+              />
+            </div>
+          </div>
+          <div class="bottom">
+            <div class="invert">
+              <Ticker
+                duration={10000}
+                text="KISS MY ASS"
+              />
+            </div>
+          </div>
+          <div class="left">
+            <div class="invert">
+              <Ticker
+                duration={5000}
+                text="COMPUTER CRAPHICS"
+              />
+            </div>
+          </div>
+          <div class="right">
+            <div class="invert">
+              <Ticker
+                duration={100000}
+                text="ASS MY KISS"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
