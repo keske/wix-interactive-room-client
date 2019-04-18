@@ -43,11 +43,9 @@ export default ({
         </style>
         <div style={styles.root}>
           <div style={styles.ticker}>
-            <p style={styles.tickerLine}>
-              {
-                text
-              }
-            </p>
+            {
+              text
+            }
           </div>
         </div>
       </div>
@@ -61,9 +59,8 @@ export default ({
         animation: `ticker ${duration}ms linear infinite`,
         display: 'inlineBlock',
         textTransform: 'uppercase',
+        whiteSpace: 'nowrap',
 
-      },
-      tickerLine: {
         color: '#FFF',
         fontSize: '100px',
         fontFamily: 'Impact',

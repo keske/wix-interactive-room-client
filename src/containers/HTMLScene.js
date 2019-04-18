@@ -10,7 +10,7 @@ export default (): React.Node => (
   R.pipe(
     ({ styles }) => (
       <div style={styles.root}>
-        <Ticker />
+        <Ticker text="DJ MASHA | COMPUTER CRAPHICS | ANDREY KESKE" />
       </div>
     ),
   )({
