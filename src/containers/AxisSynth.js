@@ -106,7 +106,13 @@ export default class AxisSynth extends React.Component<Props, State> {
           objects={this.composeObjects()}
         >
           {
-            (/* { scene } */) => false
+            (/* { scene } */) => (
+              <div style={{ top: 100, left: 100 }}>
+                <h1 style={{ color: '#FFF' }}>
+                  Hello
+                </h1>
+              </div>
+            )
           }
         </Scene>
       )
