@@ -1,11 +1,12 @@
 // @flow
 
 import * as React from 'react';
+import * as THREE from 'three';
 
 import axios from 'axios';
 
 // Components
-import { Scene, cube } from '../modules/Three';
+import { Scene, cube, lens } from '../modules/Three';
 
 // Types
 import type { Acceleration, MouseOrTouchPosition, Screen } from '../types';
@@ -60,6 +61,23 @@ export default class AxisSynth extends React.Component<Props, State> {
       render: {
         type: 'cube',
       },
+    }, {
+      animate: {
+        position: {
+          x: mouse.x - (window.innerWidth / 1.5),
+          y: -(mouse.y - (window.innerHeight / 1.5)),
+          z: (mouse.x - mouse.y) / 7,
+        },
+        rotation: {
+          x: mouse.y / 17,
+          y: mouse.x / 17,
+          z: 0,
+        },
+      },
+      object: scene && lens(),
+      render: {
+        type: 'cube',
+      },
     }];
   }
 
@@ -105,7 +123,30 @@ export default class AxisSynth extends React.Component<Props, State> {
           objects={this.composeObjects()}
         >
           {
-            () => false
+            ({ scene }) => {
+              const geometry = new THREE.SphereBufferGeometry(10, 32, 16);
+
+              const textureCube = new THREE.CubeTextureLoader()
+                .setPath('https://threejs.org/examples/textures/cube/Park3Med/')
+                .load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
+
+              textureCube.mapping = THREE.CubeRefractionMapping;
+
+              const material = new THREE.MeshBasicMaterial({
+                envMap: textureCube,
+                refractionRatio: 0.95,
+              });
+
+              const mesh = new THREE.Mesh(geometry, material);
+
+              mesh.position.x = 100;
+              mesh.position.y = 100;
+              mesh.position.z = 10;
+
+              // scene.add(mesh);
+
+              return false;
+            }
           }
         </Scene>
       )
