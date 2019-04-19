@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import * as THREE from 'three';
 
+// Libs
 import axios from 'axios';
 
 // Components
@@ -38,7 +38,7 @@ export default class AxisSynth extends React.Component<Props, State> {
   componentDidMount = () => {
     this.registerDevice();
 
-    this.timer = setInterval(() => this.updateDevice(), 100);
+    // this.timer = setInterval(() => this.updateDevice(), 100);
   }
 
   composeObjects = (scene: boolean = true) => {
@@ -123,30 +123,7 @@ export default class AxisSynth extends React.Component<Props, State> {
           objects={this.composeObjects()}
         >
           {
-            ({ scene }) => {
-              const geometry = new THREE.SphereBufferGeometry(10, 32, 16);
-
-              const textureCube = new THREE.CubeTextureLoader()
-                .setPath('https://threejs.org/examples/textures/cube/Park3Med/')
-                .load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
-
-              textureCube.mapping = THREE.CubeRefractionMapping;
-
-              const material = new THREE.MeshBasicMaterial({
-                envMap: textureCube,
-                refractionRatio: 0.95,
-              });
-
-              const mesh = new THREE.Mesh(geometry, material);
-
-              mesh.position.x = 100;
-              mesh.position.y = 100;
-              mesh.position.z = 10;
-
-              // scene.add(mesh);
-
-              return false;
-            }
+            () => false
           }
         </Scene>
       )

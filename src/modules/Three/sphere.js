@@ -3,10 +3,10 @@
 import * as THREE from 'three';
 
 type Props = {
-  color: string,
-  radius: number,
-  widthSegments: number,
-  heightSegments: number,
+  color?: string,
+  radius?: number,
+  widthSegments?: number,
+  heightSegments?: number,
 };
 
 export default ({

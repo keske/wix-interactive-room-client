@@ -3,32 +3,37 @@
 import * as THREE from 'three';
 
 type Props = {
-  color: string,
-  size: number,
+  images?: Array<string>,
+  path?: string,
+  radius?: number,
+  refractionRatio?: number,
+  widthSegments?: number,
+  heightSegments?: number,
 };
 
 export default ({
-  color = '#FFF',
-  size = 20,
+  images = ['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg'],
+  path = 'https://threejs.org/examples/textures/cube/Park3Med/',
+  radius = 10,
+  refractionRatio = 0.95,
+  widthSegments = 32,
+  heightSegments = 32,
 }: Props = {}): * => {
-  const geometry = new THREE.SphereBufferGeometry(10, 32, 16);
+  const envMap = new THREE.CubeTextureLoader().setPath(path).load(images);
 
-  const textureCube = new THREE.CubeTextureLoader()
-    .setPath('https://threejs.org/examples/textures/cube/Park3Med/')
-    .load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
+  envMap.mapping = THREE.CubeRefractionMapping;
 
-  textureCube.mapping = THREE.CubeRefractionMapping;
-
-  const material = new THREE.MeshBasicMaterial({
-    envMap: textureCube,
-    refractionRatio: 0.95,
-  });
-
-  const mesh = new THREE.Mesh(geometry, material);
-
-  mesh.position.x = 100;
-  mesh.position.y = 100;
-  mesh.position.z = 10;
-
-  return mesh;
+  return (
+    new THREE.Mesh(
+      new THREE.SphereBufferGeometry(
+        radius,
+        widthSegments,
+        heightSegments,
+      ),
+      new THREE.MeshBasicMaterial({
+        envMap,
+        refractionRatio,
+      }),
+    )
+  );
 };
