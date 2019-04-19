@@ -4,23 +4,16 @@ import * as R from 'ramda';
 import * as React from 'react';
 
 // Components
-import Cube from '../components/Cube';
 import Ticker from '../components/Ticker';
 
-// Types
-import type { MouseOrTouchPosition } from '../types';
-
-type Props = {
-  mouse: MouseOrTouchPosition,
-};
-
-export default ({ mouse }: Props): React.Node => (
+export default (): React.Node => (
   R.pipe(
     ({ styles }) => (
       <div style={styles.root}>
-        <Cube {...{ mouse }}/>
         <div style={styles.ticker}>
-          <Ticker text="DJ MASHA | COMPUTER CRAPHICS | ANDREY KESKE" />
+          {
+            // <Ticker text="DJ MASHA | COMPUTER CRAPHICS | ANDREY KESKE" />
+          }
         </div>
       </div>
     ),
