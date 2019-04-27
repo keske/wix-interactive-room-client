@@ -12,9 +12,16 @@ type Props = {
 };
 
 export default ({
-  images = ['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg'],
-  path = 'https://threejs.org/examples/textures/cube/Park3Med/',
-  radius = 10,
+  images = [
+    'back.png',
+    'back.png',
+    'left.png',
+    'right.png',
+    'top.png',
+    'bottom.png',
+  ],
+  path = 'http://localhost:4444/wix/',
+  radius = 20,
   refractionRatio = 0.95,
   widthSegments = 32,
   heightSegments = 32,

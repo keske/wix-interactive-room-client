@@ -30,7 +30,8 @@ export default class AxisSynth extends React.Component<Props, State> {
     this.state = {
       id: null,
       endPoint: process.env.NODE_ENV === 'development'
-        ? 'http://10.0.1.102:3030/'
+        ? 'http://172.16.0.152:3030/' // WIX
+        // ? 'http://192.168.1.4:3030/'
         : 'http://174.138.54.13:3030/',
     };
   }
@@ -38,7 +39,7 @@ export default class AxisSynth extends React.Component<Props, State> {
   componentDidMount = () => {
     this.registerDevice();
 
-    // this.timer = setInterval(() => this.updateDevice(), 100);
+    this.timer = setInterval(() => this.updateDevice(), 100);
   }
 
   composeObjects = (scene: boolean = true) => {
@@ -66,7 +67,7 @@ export default class AxisSynth extends React.Component<Props, State> {
         position: {
           x: mouse.x - (window.innerWidth / 1.5),
           y: -(mouse.y - (window.innerHeight / 1.5)),
-          z: (mouse.x - mouse.y) / 7,
+          z: (mouse.x - mouse.y) / 2,
         },
         rotation: {
           x: mouse.y / 17,
@@ -76,7 +77,7 @@ export default class AxisSynth extends React.Component<Props, State> {
       },
       object: scene && lens(),
       render: {
-        type: 'cube',
+        type: 'lens',
       },
     }];
   }
