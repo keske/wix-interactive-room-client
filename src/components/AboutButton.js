@@ -19,7 +19,9 @@ export default (): React.Node => (
                 }}
                 style={styles.button}
               >
-                🤟
+                <span aria-label="" role="img">
+                  🤟
+                </span>
               </button>
             </div>
           )
