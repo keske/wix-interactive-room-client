@@ -12,45 +12,41 @@ import type { Acceleration, MouseOrTouchPosition } from '../../types';
 type Props = {
   acceleration: Acceleration,
   children: any,
-  endPoint: string,
-  mouse: MouseOrTouchPosition,
   id: string,
+  mouse: MouseOrTouchPosition,
 };
 
 export default class Audio extends React.Component<Props> {
 
   getRandomSample = () => (
-    'http://localhost:4444/wix/1.wav'
+    'http://localhost:3017/samples/1.wav'
   )
 
-  play = () => {
-    const { mouse } = this.props;
+  play = async () => {
+    const { id, mouse } = this.props;
+
+    const delay = {
+      delayTime: mouse.x / 1000,
+      wet: mouse.y / 1000,
+      feedback: 0.25,
+    };
 
     const source = this.getRandomSample();
 
-    this.send(source);
+    await axios.post('http://localhost:3017/', {
+      id,
+      delay,
+      source,
+    });
 
     const sample = (
       new Wad({
-        delay: {
-          delayTime: mouse.x / 1000,
-          wet: mouse.y / 1000,
-          feedback: 0.25,
-        },
+        delay,
         source,
       })
     );
 
     sample.play();
-  }
-
-  send = async (source: string) => {
-    const { endPoint, id } = this.props;
-
-    await axios.post(`${endPoint}/audio`, {
-      id,
-      source,
-    });
   }
 
   render = () => {
