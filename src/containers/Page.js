@@ -3,6 +3,9 @@
 import * as React from 'react';
 
 // Components
+import About from '../modules/About';
+import AboutScreen from './About';
+import AboutButton from '../components/AboutButton';
 import AxisSynth from './AxisSynth';
 import Debbuger from '../components/Debbuger';
 import Gyroscope from '../modules/Gyroscope';
@@ -20,8 +23,14 @@ export default (): React.Node => (
                 {
                   (screen) => (
                     <div>
+                      <About>
+                        <AboutScreen />
+                        <AboutButton />
+                      </About>
+                      {
+                        // <AxisSynth {...{ acceleration, mouse, screen }} />
+                      }
                       <Debbuger {...{ acceleration, mouse }} />
-                      <AxisSynth {...{ acceleration, mouse, screen }} />
                     </div>
                   )
                 }
