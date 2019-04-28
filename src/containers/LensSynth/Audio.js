@@ -1,5 +1,6 @@
 // @flow
 
+import * as R from 'ramda';
 import * as React from 'react';
 
 // Libs
@@ -16,13 +17,31 @@ type Props = {
   mouse: MouseOrTouchPosition,
 };
 
-export default class Audio extends React.Component<Props> {
+type State = {
+  source: string,
+};
+
+export default class Audio extends React.Component<Props, State> {
+
+  state = {
+    source: (
+      R.pipe(
+        () => (
+          Math.floor(Math.random() * 94) + 1
+        ),
+        (_) => (
+          `http://192.168.1.2:3017/samples/${_}.wav`
+        ),
+      )()
+    ),
+  }
 
   getRandomSample = () => (
-    'http://192.168.1.2:3017/samples/1.wav'
+    `http://192.168.1.2:3017/samples/${Math.floor(Math.random() * 94) + 1}.wav`
   )
 
   play = async () => {
+    const { source } = this.state;
     const { id, mouse } = this.props;
 
     const delay = {
@@ -30,8 +49,6 @@ export default class Audio extends React.Component<Props> {
       wet: mouse.y / 1000,
       feedback: 0.25,
     };
-
-    const source = this.getRandomSample();
 
     await axios.post('http://192.168.1.2:3017/', {
       id,
