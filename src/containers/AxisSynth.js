@@ -6,7 +6,7 @@ import * as React from 'react';
 import axios from 'axios';
 
 // Components
-import { Scene, cube, lens } from '../modules/Three';
+import Scene, { cube, sphere } from '../modules/Three';
 
 // Types
 import type { Acceleration, MouseOrTouchPosition, Screen } from '../types';
@@ -75,9 +75,9 @@ export default class AxisSynth extends React.Component<Props, State> {
           z: 0,
         },
       },
-      object: scene && lens(),
+      object: scene && sphere(),
       render: {
-        type: 'lens',
+        type: 'sphere',
       },
     }];
   }

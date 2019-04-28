@@ -4,11 +4,11 @@ import * as React from 'react';
 import * as R from 'ramda';
 
 // Types
-import type { Acceleration, Mouse } from '../types';
+import type { Acceleration, MouseOrTouchPosition } from '../types';
 
 type Props = {
   acceleration: Acceleration,
-  mouse: Mouse,
+  mouse: MouseOrTouchPosition,
 };
 
 export default ({ acceleration, mouse }: Props): React.Node => (

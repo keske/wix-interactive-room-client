@@ -13,13 +13,6 @@ type State = {
   acceleration: Acceleration,
 };
 
-const handleDeviceMotion = () => {
-    console.log('handleDeviceMotion');
-    // this.setState(event);
-  };
-
-window.addEventListener('devicemotion', handleDeviceMotion, true);
-
 export default class Gyroscope extends React.Component<Props, State> {
 
   state = {
