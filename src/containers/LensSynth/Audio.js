@@ -19,7 +19,7 @@ type Props = {
 export default class Audio extends React.Component<Props> {
 
   getRandomSample = () => (
-    'http://localhost:3017/samples/1.wav'
+    'http://192.168.1.2:3017/samples/1.wav'
   )
 
   play = async () => {
@@ -33,7 +33,7 @@ export default class Audio extends React.Component<Props> {
 
     const source = this.getRandomSample();
 
-    await axios.post('http://localhost:3017/', {
+    await axios.post('http://192.168.1.2:3017/', {
       id,
       delay,
       source,
@@ -55,6 +55,9 @@ export default class Audio extends React.Component<Props> {
     return (
       <div
         onClick={() => {
+          this.play();
+        }}
+        onTouchStart={() => {
           this.play();
         }}
       >
