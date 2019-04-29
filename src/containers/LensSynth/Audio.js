@@ -30,7 +30,7 @@ export default class Audio extends React.Component<Props, State> {
           Math.floor(Math.random() * 94) + 1
         ),
         (_) => (
-          process.env.NODE_ENV === 'production'
+          process.env.REACT_APP_STAGE === 'production'
             ? `http://134.209.218.211:3080/samples/${_}.wav`
             : `http://localhost:3080/samples/${_}.wav`
         ),
@@ -41,7 +41,7 @@ export default class Audio extends React.Component<Props, State> {
   getRandomSample = () => (
     R.pipe(
       () => (
-        process.env.NODE_ENV === 'production'
+        process.env.REACT_APP_STAGE === 'production'
           ? 'http://134.209.218.211:3080/samples'
           : 'http://localhost:3080/samples'
       ),
@@ -62,7 +62,7 @@ export default class Audio extends React.Component<Props, State> {
     };
 
     await axios.post((
-      process.env.NODE_ENV === 'production'
+      process.env.REACT_APP_STAGE === 'production'
         ? 'http://134.209.218.211:3080/'
         : 'http://localhost:3080/'
     ), {
