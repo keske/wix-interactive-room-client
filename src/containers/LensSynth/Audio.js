@@ -30,14 +30,25 @@ export default class Audio extends React.Component<Props, State> {
           Math.floor(Math.random() * 94) + 1
         ),
         (_) => (
-          `http://192.168.1.2:3017/samples/${_}.wav`
+          process.env.NODE_ENV === 'production'
+            ? `http://134.209.218.211:3080/samples/${_}.wav`
+            : `http://localhost:3080/samples/${_}.wav`
         ),
       )()
     ),
   }
 
   getRandomSample = () => (
-    `http://192.168.1.2:3017/samples/${Math.floor(Math.random() * 94) + 1}.wav`
+    R.pipe(
+      () => (
+        process.env.NODE_ENV === 'production'
+          ? 'http://134.209.218.211:3080/samples'
+          : 'http://localhost:3080/samples'
+      ),
+      (url) => (
+        `${url}/${Math.floor(Math.random() * 94) + 1}.wav`
+      ),
+    )()
   )
 
   play = async () => {
@@ -50,7 +61,11 @@ export default class Audio extends React.Component<Props, State> {
       feedback: 0.25,
     };
 
-    await axios.post('http://192.168.1.2:3017/', {
+    await axios.post((
+      process.env.NODE_ENV === 'production'
+        ? 'http://134.209.218.211:3080/'
+        : 'http://localhost:3080/'
+    ), {
       id,
       delay,
       source,
