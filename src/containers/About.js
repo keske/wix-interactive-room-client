@@ -22,7 +22,7 @@ export default (): React.Node => (
                 </p>
 
                 <p style={styles.paragraph}>
-                  This project is open source project, check it out our repository on GitHub: 
+                  This project is open source project, check it out our repository on GitHub:
                   <a
                     href="https://github.com/keske/wix-interactive-room"
                     style={styles.link}

@@ -34,7 +34,8 @@ export default class Audio extends React.Component<Props, State> {
         (_) => (
           process.env.REACT_APP_STAGE === 'production'
             ? `http://134.209.218.211:3080/samples/${_}.wav`
-            : `http://localhost:3080/samples/${_}.wav`
+            : `http://192.168.1.6:3080/samples/${_}.wav`
+            // : `http://localhost:3080/samples/${_}.wav`
         ),
       )()
     ),
@@ -45,7 +46,8 @@ export default class Audio extends React.Component<Props, State> {
       () => (
         process.env.REACT_APP_STAGE === 'production'
           ? 'http://134.209.218.211:3080/samples'
-          : 'http://localhost:3080/samples'
+          : 'http://192.168.1.6:3080/samples'
+          // : 'http://localhost:3080/samples'
       ),
       (url) => (
         `${url}/${Math.floor(Math.random() * 94) + 1}.wav`
@@ -66,7 +68,8 @@ export default class Audio extends React.Component<Props, State> {
     await axios.post((
       process.env.REACT_APP_STAGE === 'production'
         ? 'http://134.209.218.211:3080/'
-        : 'http://localhost:3080/'
+        : 'http://192.168.1.6:3080/'
+        // : 'http://localhost:3080/'
     ), {
       id,
       delay,

@@ -32,7 +32,8 @@ export default class LensSynth extends React.Component<Props, State> {
       id: null,
       endPoint: process.env.REACT_APP_STAGE === 'production'
         ? 'http://134.209.218.211:3070'
-        : 'http://localhost:3070',
+        : 'http://192.168.1.6:3070',
+        // : 'http://localhost:3070',
     };
   }
 

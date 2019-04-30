@@ -148,7 +148,8 @@ export default class Graphics extends React.Component<Props> {
     await axios.post((
       process.env.REACT_APP_STAGE === 'production'
         ? 'http://134.209.218.211:3080/animate'
-        : 'http://localhost:3080/animate'
+        : 'http://192.168.1.6:3080/animate'
+        // : 'http://localhost:3080/animate'
     ), {
       id,
     });
