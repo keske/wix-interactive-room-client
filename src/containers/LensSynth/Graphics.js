@@ -1,12 +1,26 @@
 // @flow
 
+import * as R from 'ramda';
 import * as React from 'react';
 
 // Libs
 import axios from 'axios';
 
 // Components
-import Scene, { sphere } from '../../modules/Three';
+import Scene, {
+  circle,
+  cone,
+  cube,
+  dodecahedron,
+  knot,
+  octahedron,
+  sphere,
+  tetrahedron,
+  torus,
+} from '../../modules/Three';
+
+// Utils
+import getRandom from '../../utils/getRandom';
 
 // Types
 import type { Acceleration, MouseOrTouchPosition, Screen } from '../../types';
@@ -14,6 +28,10 @@ import type { Acceleration, MouseOrTouchPosition, Screen } from '../../types';
 type Props = {
   acceleration: Acceleration,
   endPoint: string,
+  geometries: Array<{
+    fn: Function,
+    type: string,
+  }>,
   mouse: MouseOrTouchPosition,
   id: string,
   screen: Screen,
@@ -21,33 +39,80 @@ type Props = {
 
 export default class Graphics extends React.Component<Props> {
 
+  static defaultProps = {
+    geometries: [{
+      object: circle(),
+      type: 'circle',
+    }, {
+      object: cone(),
+      type: 'cone',
+    }, {
+      object: cube(),
+      type: 'cube',
+    }, {
+      object: dodecahedron(),
+      type: 'dodecahedron',
+    }, {
+      object: knot(),
+      type: 'knot',
+    }, {
+      object: octahedron(),
+      type: 'octahedron',
+    }, {
+      object: sphere(),
+      type: 'sphere',
+    }, {
+      object: tetrahedron(),
+      type: 'tetrahedron',
+    }, {
+      object: torus(),
+      type: 'torus',
+    }],
+  }
+
   componentDidMount = () => {
     this.init();
 
-    this.timer = setInterval(() => this.updateDevice(), 100);
+    this.timer = setInterval(() => {
+      this.updateDevice();
+    }, 100);
   }
 
   composeObjects = (scene: boolean = true) => {
-    const { mouse } = this.props;
+    const { geometries, mouse } = this.props;
 
-    return [{
-      animate: {
-        position: {
-          x: mouse.x - (window.innerWidth / 2),
-          y: -(mouse.y - (window.innerHeight / 2)),
-          // z: (mouse.x - mouse.y) / 7,
-        },
-        rotation: {
-          x: mouse.y / 7,
-          y: mouse.x / 7,
-          z: 0,
-        },
-      },
-      object: scene && sphere(),
-      render: {
-        type: 'sphere',
-      },
-    }];
+    return (
+      R.pipe(
+        R.always({
+          min: 0,
+          max: R.dec(R.length(geometries)),
+        }),
+        ({ min, max }) => (
+          getRandom(min, max)
+        ),
+        (number) => (
+          geometries[number]
+        ),
+        ({ object, type }) => [{
+          animate: {
+            position: {
+              x: mouse.x - (window.innerWidth / 2),
+              y: -(mouse.y - (window.innerHeight / 2)),
+              // z: (mouse.x - mouse.y) / getRandom(1, 10),
+            },
+            rotation: {
+              x: mouse.y / getRandom(1, 10),
+              y: mouse.x / getRandom(1, 10),
+              z: mouse.x / getRandom(1, 10),
+            },
+          },
+          object: scene && object,
+          render: {
+            type,
+          },
+        }],
+      )()
+    );
   }
 
   init = async () => {
