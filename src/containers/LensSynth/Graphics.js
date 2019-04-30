@@ -98,7 +98,7 @@ export default class Graphics extends React.Component<Props> {
         ({ object, type }) => [{
           animate: {
             position: {
-              x: mouse.x - (window.innerWidth / 2),
+              x: mouse.x - (window.innerWidth / 1.7),
               y: -(mouse.y - (window.innerHeight / 2)),
               // z: (mouse.x - mouse.y) / getRandom(1, 10),
             },
@@ -168,6 +168,13 @@ export default class Graphics extends React.Component<Props> {
     >
       <Scene
         {...this.props}
+        camera={{
+          position: {
+            x: 0,
+            y: 0,
+            z: 150,
+          },
+        }}
         objects={this.composeObjects()}
       >
         {
