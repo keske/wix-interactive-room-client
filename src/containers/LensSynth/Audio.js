@@ -21,6 +21,8 @@ type State = {
   source: string,
 };
 
+// TODO:
+// 1. Refactor developmetn and production ip's to functions()
 export default class Audio extends React.Component<Props, State> {
 
   state = {
