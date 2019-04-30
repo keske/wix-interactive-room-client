@@ -17,7 +17,7 @@ export default (): React.Node => (
         backgroundImage: 'linear-gradient(45deg, #000000 46.30%, #ffffff 46.30%, #ffffff 50%, #000000 50%, #000000 96.30%, #ffffff 96.30%, #ffffff 100%)',
         backgroundSize: '38.18px 38.18px',
 
-        position: 'absolute',
+        position: 'fixed',
         zIndex: 0,
 
         opacity: 0.2,

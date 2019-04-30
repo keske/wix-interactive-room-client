@@ -8,10 +8,9 @@ import axios from 'axios';
 import Wad from 'web-audio-daw';
 
 // Types
-import type { Acceleration, MouseOrTouchPosition } from '../../types';
+import type { MouseOrTouchPosition } from '../../types';
 
 type Props = {
-  acceleration: Acceleration,
   children: any,
   id: string,
   mouse: MouseOrTouchPosition,

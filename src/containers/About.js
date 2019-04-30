@@ -42,7 +42,7 @@ export default (): React.Node => (
         top: 0,
         left: 0,
         padding: 50,
-        position: 'absolute',
+        position: 'fixed',
         zIndex: 7,
         background: 'rgba(0, 0, 0, 0.87)',
         width: window.innerWidth,

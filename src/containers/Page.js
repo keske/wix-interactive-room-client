@@ -8,34 +8,33 @@ import AboutScreen from './About';
 import AboutButton from '../components/AboutButton';
 import GeometrySynth from './GeometrySynth/Root';
 import Debbuger from '../components/Debbuger';
-import Gyroscope from '../modules/Gyroscope';
 import ScreenInteraction from '../modules/ScreenInteraction';
 import Screen from '../components/Screen';
+import TextSynth from './TextSynth/Root';
 
 export default (): React.Node => (
   <ScreenInteraction>
     {
       (mouse) => (
-        <Gyroscope>
+        <Screen>
           {
-            ({ acceleration }) => (
-              <Screen>
+            (screen) => (
+              <div>
+                <About>
+                  <AboutScreen />
+                  <AboutButton />
+                </About>
                 {
-                  (screen) => (
-                    <div>
-                      <About>
-                        <AboutScreen />
-                        <AboutButton />
-                      </About>
-                      <GeometrySynth {...{ acceleration, mouse, screen }} />
-                      <Debbuger {...{ acceleration, mouse }} />
-                    </div>
-                  )
+                  <GeometrySynth {...{ mouse, screen }} />
                 }
-              </Screen>
+                {
+                  // <TextSynth {...{ mouse, screen }} />
+                }
+                <Debbuger {...{ mouse }} />
+              </div>
             )
           }
-        </Gyroscope>
+        </Screen>
       )
     }
   </ScreenInteraction>

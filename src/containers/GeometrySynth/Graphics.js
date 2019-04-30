@@ -23,10 +23,9 @@ import Scene, {
 import getRandom from '../../utils/getRandom';
 
 // Types
-import type { Acceleration, MouseOrTouchPosition, Screen } from '../../types';
+import type { MouseOrTouchPosition, Screen } from '../../types';
 
 type Props = {
-  acceleration: Acceleration,
   endPoint: string,
   geometries: Array<{
     fn: Function,

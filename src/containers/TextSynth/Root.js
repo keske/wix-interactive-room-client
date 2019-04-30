@@ -1,11 +1,12 @@
 // @flow
 
+import * as R from 'ramda';
 import * as React from 'react';
 
 // Components
-import Audio from './Audio';
-import Background from './Background';
-import Graphics from './Graphics';
+// import Audio from './Audio';
+// import Background from './Background';
+// import Graphics from './Graphics';
 
 // Types
 import type { MouseOrTouchPosition, Screen } from '../../types';
@@ -22,7 +23,7 @@ type State = {
 
 // TODO:
 // 1. Refactor developmetn and production ip's to functions()
-export default class GeometrySynth extends React.Component<Props, State> {
+export default class LensSynth extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
@@ -58,10 +59,36 @@ export default class GeometrySynth extends React.Component<Props, State> {
 
     return (
       id && (
-        <Audio {...props }>
-          <Background />
-          <Graphics {...props } />
-        </Audio>
+        R.pipe(
+          ({ styles }) => (
+            <div style={styles.root}>
+              <input
+                style={styles.input}
+                type="text"
+              />
+            </div>
+          ),
+        )({
+          styles: {
+            root: {
+              // top: 20,
+              // left: 20,
+
+              position: 'fixed',
+              zIndex: 2,
+
+              width: `${window.innerWidth}px`,
+              height: `${window.innerHeight}px`,
+
+              textAlign: 'center',
+            },
+            input: {
+              width: `${window.innerWidth - 150}px`,
+              display: 'inline-block',
+              // margin: 30,
+            },
+          },
+        })
       )
     );
   }
