@@ -60,7 +60,7 @@ export default ({ mouse: { x, y } }: Props): React.Node => (
           position: 'absolute',
           zIndex: 2,
 
-          opacity: 0.3,
+          opacity: 0.5,
         },
         text: {
           color: '#FFF',

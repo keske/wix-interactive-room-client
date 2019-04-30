@@ -37,6 +37,8 @@ type Props = {
   screen: Screen,
 };
 
+// TODO:
+// 1. Refactor developmetn and production ip's to functions()
 export default class Graphics extends React.Component<Props> {
 
   static defaultProps = {
@@ -140,17 +142,38 @@ export default class Graphics extends React.Component<Props> {
     });
   }
 
+  animate = async () => {
+    const { id } = this.props;
+
+    await axios.post((
+      process.env.REACT_APP_STAGE === 'production'
+        ? 'http://134.209.218.211:3080/animate'
+        : 'http://localhost:3080/animate'
+    ), {
+      id,
+    });
+  }
+
   timer: any
 
   render = () => (
-    <Scene
-      {...this.props}
-      objects={this.composeObjects()}
+    <div
+      onClick={() => {
+        this.animate();
+      }}
+      onTouchStart={() => {
+        this.animate();
+      }}
     >
-      {
-        () => false
-      }
-    </Scene>
+      <Scene
+        {...this.props}
+        objects={this.composeObjects()}
+      >
+        {
+          () => false
+        }
+      </Scene>
+    </div>
   )
 
 }

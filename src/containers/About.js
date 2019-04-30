@@ -15,17 +15,21 @@ export default (): React.Node => (
             show && (
               <div style={styles.root}>
                 <h1 style={styles.title}>
-                  Andrey Keske
+                  Welcome to the Interaction Room.
                 </h1>
                 <p style={styles.paragraph}>
-                  Andrey Keske
+                  Here you can modify your own graphic element with unique sound effects. Look at the projection screen above the DJ, now you are part of the show.
                 </p>
-                <a
-                  href="http://www.andreykeske.com"
-                  style={styles.link}
-                >
-                  Andrey Keske
-                </a>
+
+                <p style={styles.paragraph}>
+                  This project is open source project, check it out our repository on GitHub: 
+                  <a
+                    href="https://github.com/keske/wix-interactive-room"
+                    style={styles.link}
+                  >
+                    https://github.com/keske/wix-interactive-room
+                  </a>
+                </p>
               </div>
             )
           )

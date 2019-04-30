@@ -4,6 +4,7 @@ import * as React from 'react';
 
 // Components
 import Audio from './Audio';
+import Background from './Background';
 import Graphics from './Graphics';
 
 // Types
@@ -20,6 +21,8 @@ type State = {
   id: number | null,
 };
 
+// TODO:
+// 1. Refactor developmetn and production ip's to functions()
 export default class LensSynth extends React.Component<Props, State> {
 
   constructor(props: Props) {
@@ -57,6 +60,7 @@ export default class LensSynth extends React.Component<Props, State> {
     return (
       id && (
         <Audio {...props }>
+          <Background />
           <Graphics {...props } />
         </Audio>
       )
