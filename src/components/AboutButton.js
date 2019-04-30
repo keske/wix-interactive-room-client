@@ -32,7 +32,7 @@ export default (): React.Node => (
     styles: {
       root: {
         bottom: 20,
-        right: 20,
+        right: 0,
         position: 'absolute',
         zIndex: 8,
       },

@@ -65,8 +65,7 @@ export default ({ mouse: { x, y } }: Props): React.Node => (
         text: {
           color: '#FFF',
           fontFamily: 'Monospace',
-          fontSize: 10,
-          fontWeight: 'bold',
+          fontSize: 8,
         },
       },
     })
