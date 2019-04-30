@@ -35,7 +35,7 @@ export default ({
   ),
   radius = 10,
   radialSegments = 32,
-  refraction = true,
+  refraction = false,
   refractionRatio = 0.95,
 }: Props = {}): * => (
   new THREE.Mesh(

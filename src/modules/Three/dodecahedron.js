@@ -33,7 +33,7 @@ export default ({
       : 'http://localhost:3070/cube/'
   ),
   radius = 10,
-  refraction = true,
+  refraction = false,
   refractionRatio = 0.95,
 }: Props = {}): * => (
   new THREE.Mesh(

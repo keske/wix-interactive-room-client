@@ -47,7 +47,7 @@ export default ({
       ? 'http://134.209.218.211:3070/cube/'
       : 'http://localhost:3070/cube/'
   ),
-  refraction = true,
+  refraction = false,
   refractionRatio = 0.95,
   text = 'Text',
   size = 180,

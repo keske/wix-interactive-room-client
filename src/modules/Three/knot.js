@@ -35,7 +35,7 @@ export default ({
   ),
   radius = 10,
   radialSegments = 16,
-  refraction = true,
+  refraction = false,
   refractionRatio = 0.95,
   tube = 3,
   tubularSegments = 100,
