@@ -6,7 +6,7 @@ import * as React from 'react';
 import About from '../modules/About';
 import AboutScreen from './About';
 import AboutButton from '../components/AboutButton';
-import LensSynth from './LensSynth/LensSynth';
+import GeometrySynth from './GeometrySynth/Root';
 import Debbuger from '../components/Debbuger';
 import Gyroscope from '../modules/Gyroscope';
 import ScreenInteraction from '../modules/ScreenInteraction';
@@ -27,7 +27,7 @@ export default (): React.Node => (
                         <AboutScreen />
                         <AboutButton />
                       </About>
-                      <LensSynth {...{ acceleration, mouse, screen }} />
+                      <GeometrySynth {...{ acceleration, mouse, screen }} />
                       <Debbuger {...{ acceleration, mouse }} />
                     </div>
                   )
